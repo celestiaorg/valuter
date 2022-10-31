@@ -1,21 +1,22 @@
 package participants
 
 import (
-	"encoding/json"
 	"fmt"
-	"strings"
 
-	agSigner "github.com/archway-network/augusta-testnet-signer/types"
-	"github.com/archway-network/cosmologger/database"
-	"github.com/archway-network/valuter/tools"
-	"github.com/archway-network/valuter/types"
+	"github.com/celestiaorg/cosmologger/database"
+	"github.com/celestiaorg/valuter/tools"
+	"github.com/celestiaorg/valuter/types"
 )
 
 type ParticipantRecord struct {
-	agSigner.ID
-	Country      string
-	KycSessionId string
-	KycVerified  bool
+	FullLegalName  string `json:"full_legal_name"`
+	GithubHandle   string `json:"github_handle"`
+	EmailAddress   string `json:"email_address"`
+	AccountAddress string `json:"account_address"`
+	PubKey         string `json:"pub_key"` //TODO: Check if we need it anymore
+	Country        string `json:"country"`
+	KycSessionId   string `json:"kyc_session_id"`
+	KycVerified    bool   `json:"kyc_verified"`
 }
 
 // This function receives a json string of the signed ID,
@@ -23,29 +24,29 @@ type ParticipantRecord struct {
 // the data will be added to the database
 func ImportBySignature(jsonStr string) error {
 
-	container, err := getAgSignerContainer(jsonStr)
-	if err != nil {
-		return err
-	}
+	// container, err := getAgSignerContainer(jsonStr)
+	// if err != nil {
+	// 	return err
+	// }
 
-	// The input string was empty
-	if container == nil {
-		return nil
-	}
+	// // The input string was empty
+	// if container == nil {
+	// 	return nil
+	// }
 
-	verified, err := container.VerifySubmission()
+	// verified, err := container.VerifySubmission()
 
-	if err != nil {
-		return err
-	}
-	// The data is not verified
-	if !verified {
-		return fmt.Errorf("the data is not verified")
-	}
+	// if err != nil {
+	// 	return err
+	// }
+	// // The data is not verified
+	// if !verified {
+	// 	return fmt.Errorf("the data is not verified")
+	// }
 
 	// Let's add it to the database
 	return AddNew(ParticipantRecord{
-		ID:           container.ID,
+		// ID:           container.ID,
 		KycSessionId: "",
 		KycVerified:  false,
 	})
@@ -53,7 +54,7 @@ func ImportBySignature(jsonStr string) error {
 
 func AddNew(participant ParticipantRecord) error {
 
-	//Check if the record is already in the db
+	// Check if the record is already in the db
 	queryRes, err := database.DB.Load(database.TABLE_PARTICIPANTS,
 		database.RowType{
 			database.FIELD_PARTICIPANTS_EMAIL_ADDRESS:   participant.EmailAddress,
@@ -70,39 +71,6 @@ func AddNew(participant ParticipantRecord) error {
 	}
 	_, err = database.DB.Insert(database.TABLE_PARTICIPANTS, participant.getDBRow())
 	return err
-}
-
-func getAgSignerContainer(jsonStr string) (*agSigner.Container, error) {
-
-	jsonStr = strings.Trim(jsonStr, "\n\t\r' -")
-	if jsonStr == "" {
-		return nil, nil
-	}
-
-	// refine the string
-	jsonStr = strings.ReplaceAll(jsonStr, `""`, `"`)
-
-	if strings.HasPrefix(jsonStr, `"{`) {
-		jsonStr = strings.Trim(jsonStr, `"`)
-	}
-
-	// Let's fix those who copied it wrongly
-	if jsonStr[0] != '{' {
-		jsonStr = "{" + jsonStr
-	}
-	if jsonStr[len(jsonStr)-1] != '}' {
-		jsonStr = jsonStr + "}"
-	}
-
-	// fmt.Printf("\n\n========================\n\njsonStr: `%v`\n\n\n", jsonStr)
-
-	var container agSigner.Container
-	err := json.Unmarshal([]byte(jsonStr), &container)
-	if err != nil {
-		return nil, err
-	}
-
-	return &container, nil
 }
 
 func GetParticipants() ([]ParticipantRecord, error) {
@@ -242,11 +210,9 @@ func ImportByEmail(email string, fullName string, country string) error {
 
 	if len(participants) == 0 { // Not found in the DB
 		return AddNew(ParticipantRecord{
-			ID: agSigner.ID{
-				EmailAddress:  email,
-				FullLegalName: fullName,
-			},
-			Country: country,
+			EmailAddress:  email,
+			FullLegalName: fullName,
+			Country:       country,
 		})
 	}
 

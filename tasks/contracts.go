@@ -3,11 +3,11 @@ package tasks
 // import (
 // 	"fmt"
 
-// 	"github.com/archway-network/cosmologger/database"
-// 	cosmoLogTx "github.com/archway-network/cosmologger/tx"
-// 	"github.com/archway-network/valuter/configs"
-// 	"github.com/archway-network/valuter/participants"
-// 	"github.com/archway-network/valuter/winners"
+// 	"github.com/celestiaorg/cosmologger/database"
+// 	cosmoLogTx "github.com/celestiaorg/cosmologger/tx"
+// 	"github.com/celestiaorg/valuter/configs"
+// 	"github.com/celestiaorg/valuter/participants"
+// 	"github.com/celestiaorg/valuter/winners"
 // )
 
 // func GetSubsidizeWinners() (winners.WinnersList, error) {

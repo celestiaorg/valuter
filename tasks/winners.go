@@ -1,6 +1,6 @@
 package tasks
 
-import "github.com/archway-network/valuter/winners"
+import "github.com/celestiaorg/valuter/winners"
 
 func GetAllWinners() (winners.WinnersList, error) {
 

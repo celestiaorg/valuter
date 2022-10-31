@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	agSigner "github.com/archway-network/augusta-testnet-signer/types"
 	"github.com/archway-network/synaps-verifier/synaps"
-	"github.com/archway-network/valuter/participants"
+	"github.com/celestiaorg/valuter/participants"
 	"github.com/spf13/cobra"
 )
 
@@ -78,9 +77,9 @@ var kycVerifyCmd = &cobra.Command{
 			}
 
 			participant := participants.ParticipantRecord{
-				ID: agSigner.ID{
-					EmailAddress: user.Alias,
-				},
+				// ID: agSigner.ID{
+				// 	EmailAddress: user.Alias,
+				// },
 				KycSessionId: user.SessionId,
 				KycVerified:  user.IsVerified(),
 			}

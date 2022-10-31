@@ -3,8 +3,8 @@ package api
 import (
 	"net/http"
 
-	"github.com/archway-network/valuter/configs"
-	"github.com/archway-network/valuter/tools"
+	"github.com/celestiaorg/valuter/configs"
+	"github.com/celestiaorg/valuter/tools"
 	routing "github.com/julienschmidt/httprouter"
 )
 

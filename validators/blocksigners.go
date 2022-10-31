@@ -3,9 +3,9 @@ package validators
 import (
 	"fmt"
 
-	"github.com/archway-network/cosmologger/database"
-	"github.com/archway-network/valuter/blocks"
-	"github.com/archway-network/valuter/simplecache"
+	"github.com/celestiaorg/cosmologger/database"
+	"github.com/celestiaorg/valuter/blocks"
+	"github.com/celestiaorg/valuter/simplecache"
 )
 
 func (v *ValidatorRecord) GetFirstSignedBlockHeight() (uint64, error) {

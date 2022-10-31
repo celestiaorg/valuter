@@ -3,7 +3,7 @@ package validators
 import (
 	"strings"
 
-	"github.com/archway-network/valuter/configs"
+	"github.com/celestiaorg/valuter/configs"
 )
 
 func IsConsAddr(address string) bool {

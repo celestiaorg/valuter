@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 
@@ -9,6 +10,31 @@ import (
 
 // IndexPage implements GET / Just a test msg to see if it works
 func IndexPage(resp http.ResponseWriter, req *http.Request, params routing.Params) {
+
+	allAPIs := []string{
+		"/configs",
+		"/participants",
+		"/participants/:address",
+		"/validators",
+		"/validators/validator/:address",
+		"/validators/genesis",
+		"/validators/joined",
+		"/validators/unjailed",
+		"/winners",
+		"/winners/:address",
+		"/challenges",
+		"/challenges/gov",
+		"/challenges/gov/:proposal_id",
+		"/challenges/staking",
+		"/challenges/node-upgrade",
+		"/challenges/validators-genesis",
+		"/challenges/validators-joined",
+		"/challenges/jail-unjail",
+		"/challenges/uptime",
+		"/challenges/uptime/:burst_index",
+		"/challenges/contracts/max-net-rewards",
+		"/challenges/contracts/subsidize-users-fees",
+	}
 
 	homeHTML := `
 	<style>
@@ -43,7 +69,11 @@ func IndexPage(resp http.ResponseWriter, req *http.Request, params routing.Param
 	</script>
 	`
 
-	homeHTML = "Ciao, it works :)"
+	homeHTML = "Ciao, it works :) <p>"
+	for _, a := range allAPIs {
+		homeHTML += fmt.Sprintf(`<a href="%s">%s</a><br />`, a, a)
+	}
+
 	resp.Header().Set("Content-Type", "text/html; charset=utf-8")
 	resp.Write([]byte(homeHTML))
 }

@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/archway-network/valuter/participants"
-	"github.com/archway-network/valuter/tools"
+	"github.com/celestiaorg/valuter/participants"
+	"github.com/celestiaorg/valuter/tools"
 	routing "github.com/julienschmidt/httprouter"
 )
 

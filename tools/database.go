@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/archway-network/valuter/configs"
-	"github.com/archway-network/valuter/types"
+	"github.com/celestiaorg/valuter/configs"
+	"github.com/celestiaorg/valuter/types"
 )
 
 /*------------------------------*/

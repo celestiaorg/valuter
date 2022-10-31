@@ -1,10 +1,10 @@
 package tasks
 
 import (
-	"github.com/archway-network/valuter/blocksigners"
-	"github.com/archway-network/valuter/configs"
-	"github.com/archway-network/valuter/participants"
-	"github.com/archway-network/valuter/winners"
+	"github.com/celestiaorg/valuter/blocksigners"
+	"github.com/celestiaorg/valuter/configs"
+	"github.com/celestiaorg/valuter/participants"
+	"github.com/celestiaorg/valuter/winners"
 )
 
 func GetNodeUpgradeWinners() (winners.WinnersList, error) {

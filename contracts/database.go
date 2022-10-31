@@ -1,8 +1,8 @@
 package contracts
 
 import (
-	"github.com/archway-network/cosmologger/block"
-	"github.com/archway-network/cosmologger/database"
+	"github.com/celestiaorg/cosmologger/block"
+	"github.com/celestiaorg/cosmologger/database"
 )
 
 func DBRowToContractRecord(row database.RowType) block.ContractRecord {

@@ -2,8 +2,7 @@
     "block-explorer": {
         "tx-hash":"https://www.mintscan.io/cosmos/txs/%s",
         "account":"https://www.mintscan.io/cosmos/account/%s",
-        "validator":"https://www.mintscan.io/cosmos/validators/%s",
-        "COMMENTED-tx-hash":"https://explorer.constantine-1.archway.tech/transactions/%s"
+        "validator":"https://www.mintscan.io/cosmos/validators/%s"
     },
 
     "tasks":{
@@ -68,16 +67,16 @@
 
     "bech32-prefix" : {
         "account" :{
-            "address": "archway",
-            "pubkey": "archway"
+            "address": "celestia",
+            "pubkey": "celestiapub"
         },
         "validator" :{
-            "address": "archwayvaloper",
-            "pubkey": "archwayvaloperpub"
+            "address": "celestiavaloper",
+            "pubkey": "celestiavaloperpub"
         },
         "consensus" :{
-            "address": "archwayvalcons",
-            "pubkey": "archwayvalconspub"
+            "address": "celestiavalcons",
+            "pubkey": "celestiavalconspub"
         }
     },
 

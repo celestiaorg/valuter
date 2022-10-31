@@ -3,8 +3,8 @@ package blocksigners
 import (
 	"fmt"
 
-	"github.com/archway-network/cosmologger/database"
-	"github.com/archway-network/valuter/validators"
+	"github.com/celestiaorg/cosmologger/database"
+	"github.com/celestiaorg/valuter/validators"
 )
 
 func GetSignersByBlockHeight(height uint64) ([]validators.ValidatorRecord, error) {

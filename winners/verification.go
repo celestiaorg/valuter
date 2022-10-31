@@ -7,9 +7,9 @@ package winners
 // 	"os"
 // 	"strings"
 
-// 	"github.com/archway-network/testeval/configs"
-// 	"github.com/archway-network/testeval/events"
-// 	"github.com/archway-network/testeval/progressbar"
+// 	"github.com/celestiaorg/testeval/configs"
+// 	"github.com/celestiaorg/testeval/events"
+// 	"github.com/celestiaorg/testeval/progressbar"
 
 // 	// staking "github.com/cosmos/cosmos-sdk/x/staking/types"
 // 	// "github.com/gogo/protobuf/proto"

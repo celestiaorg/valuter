@@ -1,8 +1,8 @@
 package winners
 
 import (
-	"github.com/archway-network/valuter/participants"
-	"github.com/archway-network/valuter/validators"
+	"github.com/celestiaorg/valuter/participants"
+	"github.com/celestiaorg/valuter/validators"
 )
 
 type Winner struct {

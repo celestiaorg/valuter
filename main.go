@@ -2,18 +2,27 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 
-	"github.com/archway-network/cosmologger/database"
-	"github.com/archway-network/valuter/api"
-	"github.com/archway-network/valuter/cmd"
-	"github.com/archway-network/valuter/simplecache"
+	"github.com/celestiaorg/cosmologger/database"
+	"github.com/celestiaorg/valuter/api"
+	"github.com/celestiaorg/valuter/cmd"
+	"github.com/celestiaorg/valuter/simplecache"
+	"github.com/joho/godotenv"
 )
 
 /*--------------*/
 
+const ENV_FILE = "../.env"
+
 func main() {
+	if err := godotenv.Load(ENV_FILE); err != nil {
+		log.Fatalf("loading environment file `%s`: %v", ENV_FILE, err)
+	}
+
+	/*-------------*/
 
 	rootPath, err := os.Getwd()
 	if err != nil {

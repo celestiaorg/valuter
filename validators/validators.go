@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/archway-network/cosmologger/database"
-	cosmoLogTx "github.com/archway-network/cosmologger/tx"
-	"github.com/archway-network/valuter/blocks"
-	"github.com/archway-network/valuter/progressbar"
-	"github.com/archway-network/valuter/tools"
-	"github.com/archway-network/valuter/tx"
-	"github.com/archway-network/valuter/types"
+	"github.com/celestiaorg/cosmologger/database"
+	cosmoLogTx "github.com/celestiaorg/cosmologger/tx"
+	"github.com/celestiaorg/valuter/blocks"
+	"github.com/celestiaorg/valuter/progressbar"
+	"github.com/celestiaorg/valuter/tools"
+	"github.com/celestiaorg/valuter/tx"
+	"github.com/celestiaorg/valuter/types"
 )
 
 func GetValidatorByConsAddr(valConsAddr string) (ValidatorRecord, error) {

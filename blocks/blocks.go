@@ -3,8 +3,8 @@ package blocks
 import (
 	"fmt"
 
-	"github.com/archway-network/cosmologger/database"
-	"github.com/archway-network/valuter/types"
+	"github.com/celestiaorg/cosmologger/database"
+	"github.com/celestiaorg/valuter/types"
 )
 
 func GetLatestBlock() (types.BlockRecord, error) {

@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/archway-network/valuter/tasks"
-	"github.com/archway-network/valuter/tools"
+	"github.com/celestiaorg/valuter/tasks"
+	"github.com/celestiaorg/valuter/tools"
 	routing "github.com/julienschmidt/httprouter"
 )
 

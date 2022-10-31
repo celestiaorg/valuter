@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/archway-network/valuter/participants"
+	"github.com/celestiaorg/valuter/participants"
 	"github.com/spf13/cobra"
 )
 

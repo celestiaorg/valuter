@@ -3,8 +3,8 @@ package blocks
 import (
 	"time"
 
-	"github.com/archway-network/cosmologger/database"
-	"github.com/archway-network/valuter/types"
+	"github.com/celestiaorg/cosmologger/database"
+	"github.com/celestiaorg/valuter/types"
 )
 
 func DBRowToBlockRecord(row database.RowType) types.BlockRecord {

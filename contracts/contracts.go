@@ -9,8 +9,8 @@ package contracts
 import (
 	"fmt"
 
-	"github.com/archway-network/cosmologger/block"
-	"github.com/archway-network/cosmologger/database"
+	"github.com/celestiaorg/cosmologger/block"
+	"github.com/celestiaorg/cosmologger/database"
 )
 
 func GetMaxNetworkRewardsTopContracts(top, beginHeight, endHeight uint64) ([]block.ContractRecord, error) {
