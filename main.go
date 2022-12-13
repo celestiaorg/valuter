@@ -15,11 +15,11 @@ import (
 
 /*--------------*/
 
-const ENV_FILE = "../.env"
+// const ENV_FILE = "../.env"
 
 func main() {
 	if err := godotenv.Load(ENV_FILE); err != nil {
-		log.Fatalf("loading environment file `%s`: %v", ENV_FILE, err)
+		log.Warn("loading environment file `%s`: %v", ENV_FILE, err)
 	}
 
 	/*-------------*/
