@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"path/filepath"
 
@@ -10,7 +9,6 @@ import (
 	"github.com/celestiaorg/valuter/api"
 	"github.com/celestiaorg/valuter/cmd"
 	"github.com/celestiaorg/valuter/simplecache"
-	"github.com/joho/godotenv"
 )
 
 /*--------------*/
@@ -18,9 +16,9 @@ import (
 // const ENV_FILE = "../.env"
 
 func main() {
-	if err := godotenv.Load(ENV_FILE); err != nil {
-		log.Warn("loading environment file `%s`: %v", ENV_FILE, err)
-	}
+	// if err := godotenv.Load(ENV_FILE); err != nil {
+	// 	log.Warn("loading environment file `%s`: %v", ENV_FILE, err)
+	// }
 
 	/*-------------*/
 
