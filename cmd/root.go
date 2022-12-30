@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/celestiaorg/valuter/configs"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/spf13/cobra"
 )
@@ -14,6 +15,8 @@ var rootCmd = &cobra.Command{Use: "valuter"}
 func init() {}
 
 func Execute() {
+
+	configs.Init()
 	initClientCtx := client.Context{}.WithInput(os.Stdin)
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, client.ClientContextKey, &initClientCtx)
