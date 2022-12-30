@@ -8,6 +8,7 @@ import (
 	"github.com/celestiaorg/cosmologger/database"
 	"github.com/celestiaorg/valuter/api"
 	"github.com/celestiaorg/valuter/cmd"
+	"github.com/celestiaorg/valuter/configs"
 	"github.com/celestiaorg/valuter/simplecache"
 )
 
@@ -19,6 +20,10 @@ func main() {
 	// if err := godotenv.Load(ENV_FILE); err != nil {
 	// 	log.Warn("loading environment file `%s`: %v", ENV_FILE, err)
 	// }
+
+	/*-------------*/
+
+	configs.Init()
 
 	/*-------------*/
 
