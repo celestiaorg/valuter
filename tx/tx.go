@@ -27,6 +27,19 @@ func GetAllTxsByAction(action string) ([]types.TxRecord, error) {
 		})
 }
 
+func GetTx(txHash string) (*types.TxRecord, error) {
+	records, err := getTxs(database.RowType{
+		database.FIELD_TX_EVENTS_TX_HASH: txHash,
+	})
+	if err != nil {
+		return nil, err
+	}
+	if len(records) > 0 {
+		return &records[0], nil
+	}
+	return nil, nil
+}
+
 func getTxsWithPagination(
 	conditions database.RowType,
 	limitOffset types.DBLimitOffset) ([]types.TxRecord, types.Pagination, error) {

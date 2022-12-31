@@ -37,6 +37,8 @@ func setupRouter() *routing.Router {
 	router.GET("/participants", GetParticipants)
 	router.GET("/participants/:address", GetParticipant)
 
+	router.GET("/tx/:hash", GetTx)
+
 	router.GET("/staking/delegations/:address", GetDelegations)
 	router.GET("/staking/redelegations/:address", GetRedelegations)
 	router.GET("/staking/undelegations/:address", GetUndelegations)

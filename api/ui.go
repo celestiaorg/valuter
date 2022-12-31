@@ -22,6 +22,7 @@ func IndexPage(resp http.ResponseWriter, req *http.Request, params routing.Param
 		"/validators/unjailed",
 		"/winners",
 		"/winners/:address",
+		"/tx/:hash",
 		"/staking/delegations/:address",
 		"/staking/redelegations/:address",
 		"/staking/undelegations/:address",
