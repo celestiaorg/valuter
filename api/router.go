@@ -37,6 +37,11 @@ func setupRouter() *routing.Router {
 	router.GET("/participants", GetParticipants)
 	router.GET("/participants/:address", GetParticipant)
 
+	router.GET("/staking/delegations/:address", GetDelegations)
+	router.GET("/staking/redelegations/:address", GetRedelegations)
+	router.GET("/staking/undelegations/:address", GetUndelegations)
+	router.GET("/staking/withdraw-rewards/:address", GetWithdrawDelegationRewards)
+
 	router.GET("/validators", GetValidators)
 	router.GET("/validators/validator/:address", GetValidator)
 	router.GET("/validators/genesis", GetGenesisValidators)

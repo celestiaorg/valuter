@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/celestiaorg/cosmologger/database"
-	cosmoLogTx "github.com/celestiaorg/cosmologger/tx"
+	clgtx "github.com/celestiaorg/cosmologger/tx"
 	"github.com/celestiaorg/valuter/configs"
 	"github.com/celestiaorg/valuter/participants"
 	"github.com/celestiaorg/valuter/winners"
@@ -67,10 +67,10 @@ func GetStakingWinners() (winners.WinnersList, error) {
 
 	rows, err := database.DB.Query(SQL,
 		database.QueryParams{
-			cosmoLogTx.ACTION_DELEGATE,
-			cosmoLogTx.ACTION_BEGIN_REDELEGATE,
-			cosmoLogTx.ACTION_BEGIN_UNBONDING,
-			cosmoLogTx.ACTION_WITHDRAW_DELEGATOR_REWARD,
+			clgtx.ACTION_DELEGATE,
+			clgtx.ACTION_BEGIN_REDELEGATE,
+			clgtx.ACTION_BEGIN_UNBONDING,
+			clgtx.ACTION_WITHDRAW_DELEGATOR_REWARD,
 		})
 	if err != nil {
 		return winnersList, err

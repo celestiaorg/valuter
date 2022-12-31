@@ -22,6 +22,10 @@ func IndexPage(resp http.ResponseWriter, req *http.Request, params routing.Param
 		"/validators/unjailed",
 		"/winners",
 		"/winners/:address",
+		"/staking/delegations/:address",
+		"/staking/redelegations/:address",
+		"/staking/undelegations/:address",
+		"/staking/withdraw-rewards/:address",
 		"/challenges",
 		"/challenges/gov",
 		"/challenges/gov/:proposal_id",
@@ -69,7 +73,7 @@ func IndexPage(resp http.ResponseWriter, req *http.Request, params routing.Param
 	</script>
 	`
 
-	homeHTML = "Ciao, it works :) <p>"
+	homeHTML = "Ciao, this is `Valuter` :) <p>"
 	for _, a := range allAPIs {
 		homeHTML += fmt.Sprintf(`<a href="%s">%s</a><br />`, a, a)
 	}
