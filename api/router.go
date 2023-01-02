@@ -45,6 +45,7 @@ func setupRouter() *routing.Router {
 	router.GET("/staking/withdraw-rewards/:address", GetWithdrawDelegationRewards)
 
 	router.GET("/validators", GetValidators)
+	router.GET("/validators/validator/:address/signed-block/:height", GetValidatorSignedBlock)
 	router.GET("/validators/validator/:address", GetValidator)
 	router.GET("/validators/genesis", GetGenesisValidators)
 	router.GET("/validators/joined", GetJoinedAfterGenesisValidators)

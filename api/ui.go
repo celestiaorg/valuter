@@ -17,6 +17,7 @@ func IndexPage(resp http.ResponseWriter, req *http.Request, params routing.Param
 		"/participants/:address",
 		"/validators",
 		"/validators/validator/:address",
+		"/validators/validator/:address/signed-block/:height",
 		"/validators/genesis",
 		"/validators/joined",
 		"/validators/unjailed",

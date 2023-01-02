@@ -115,6 +115,48 @@ func GetValidator(resp http.ResponseWriter, req *http.Request, params routing.Pa
 }
 
 /*-------------*/
+/*
+* This function implements GET /validators/validator/:address/signed-block/:height
+ */
+func GetValidatorSignedBlock(resp http.ResponseWriter, req *http.Request, params routing.Params) {
+
+	address := params.ByName("address")
+	heightStr := params.ByName("height")
+
+	height, errp := strconv.ParseUint(heightStr, 10, 64)
+	if errp != nil {
+		log.Printf("API Call Error: %v", errp)
+		http.Error(resp, "Internal Server Error: "+errp.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	var val validators.ValidatorRecord
+	var err error
+
+	if validators.IsConsAddr(address) {
+		val, err = validators.GetValidatorByConsAddr(address)
+
+	} else if validators.IsOprAddr(address) {
+
+		val, err = validators.GetValidatorByOprAddr(address)
+	}
+	if err != nil {
+		log.Printf("API Call Error: %v", err)
+		http.Error(resp, "Internal Server Error: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	total, err := val.GetTotalSignedBlocksWithHeightRange(height, height)
+	if err != nil {
+		log.Printf("API Call Error: %v", err)
+		http.Error(resp, "Internal Server Error: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	tools.SendJSON(resp, total > 0)
+}
+
+/*-------------*/
 
 /*
 * This function implements GET /validators/genesis
