@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -143,6 +144,12 @@ func GetValidatorSignedBlock(resp http.ResponseWriter, req *http.Request, params
 	if err != nil {
 		log.Printf("API Call Error: %v", err)
 		http.Error(resp, "Internal Server Error: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Check if the validator is not found
+	if val.OprAddr == "" {
+		http.Error(resp, fmt.Sprintf("validator with address `%v` not found", address), http.StatusNotFound)
 		return
 	}
 
