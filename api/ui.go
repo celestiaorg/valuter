@@ -24,6 +24,7 @@ func IndexPage(resp http.ResponseWriter, req *http.Request, params routing.Param
 		"/winners",
 		"/winners/:address",
 		"/tx/:hash",
+		"/gov/:proposal_id/vote/:address",
 		"/staking/delegations/:address",
 		"/staking/redelegations/:address",
 		"/staking/undelegations/:address",

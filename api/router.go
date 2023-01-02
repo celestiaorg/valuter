@@ -39,6 +39,8 @@ func setupRouter() *routing.Router {
 
 	router.GET("/tx/:hash", GetTx)
 
+	router.GET("/gov/:proposal_id/vote/:address", GetGovVotePerProposal)
+
 	router.GET("/staking/delegations/:address", GetDelegations)
 	router.GET("/staking/redelegations/:address", GetRedelegations)
 	router.GET("/staking/undelegations/:address", GetUndelegations)
