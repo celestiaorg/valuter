@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"runtime/debug"
 
 	routing "github.com/julienschmidt/httprouter"
 )
@@ -43,46 +44,45 @@ func IndexPage(resp http.ResponseWriter, req *http.Request, params routing.Param
 		"/challenges/contracts/subsidize-users-fees",
 	}
 
-	homeHTML := `
-	<style>
-		.box{
-			-moz-border-radius: 6px;
-			-webkit-border-radius: 6px;
-			background-color: #fbf8ff;
-			background-image: url(../Images/icons/Pencil-48.png);
-			background-position: 9px 0px;
-			background-repeat: no-repeat;
-			border: solid 1px #3498db;
-			border-radius: 6px;
-			line-height: 18px;
-			overflow: hidden;
-			padding: 15px 60px;
-			width: 300px;
-			margin: auto;
-				margin-top: auto;
-			box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
-			margin-top: 200px;
-			text-align:center;
-		}
-	</style>
-	<div class="box">
-		Ciao, It works!
-		<p>
-			Navigate to the <a href="/ui/" >Web UI</a>
-		</p>
-	</div>
-	<script>
-		setTimeout( () => {window.location.href="/ui/"}, 500)
-	</script>
-	`
+	modName := "unknown"
+	buildInfo := ""
+	if bi, ok := debug.ReadBuildInfo(); ok {
+		modName = bi.Path
 
-	homeHTML = "Ciao, this is `Valuter` :) <p>"
-	for _, a := range allAPIs {
-		homeHTML += fmt.Sprintf(`<a href="%s">%s</a><br />`, a, a)
+		buildInfo += "<br /><h3>Build Info:</h3><table>"
+		for _, s := range bi.Settings {
+			buildInfo += fmt.Sprintf("<tr><td>%s</td><td>%s</td></tr>", s.Key, s.Value)
+		}
+		buildInfo += "</table>"
 	}
 
+	html := `<!DOCTYPE html><html><head><style>
+	table {border-collapse: collapse; width: 100%;}
+	td, th {border: 1px solid #222;text-align: left; padding: 8px;}
+	tr:nth-child(even) {background-color: #222;}
+	a {
+		text-decoration:none;border-bottom: 2px solid #10747f;
+		color: #f1ff8f;transition: background 0.1s cubic-bezier(.33,.66,.66,1);
+	}
+	a:hover {background: #10747f;}
+	body {
+		color: #FFF; font-family: sans-serif;
+		justify-content: center;align-items: center;
+		line-height:1.8;margin:0;padding:0 40px;
+		background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%,rgba(0, 0, 0,1) 100%);
+	  }
+	</style></head><body>`
+
+	html += fmt.Sprintf("Ciao, this is `%v` \n\n<p>", modName)
+	html += "<h3>List of endpoints:</h3>"
+	for _, a := range allAPIs {
+		html += fmt.Sprintf(`<a href="%s">%s</a><br />`, a, a)
+	}
+
+	html += buildInfo
+
 	resp.Header().Set("Content-Type", "text/html; charset=utf-8")
-	resp.Write([]byte(homeHTML))
+	resp.Write([]byte(html))
 }
 
 /*-------------------------*/
