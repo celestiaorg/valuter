@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"runtime/debug"
+	"strings"
 
 	routing "github.com/julienschmidt/httprouter"
 )
@@ -76,7 +77,9 @@ func IndexPage(resp http.ResponseWriter, req *http.Request, params routing.Param
 	html += fmt.Sprintf("Ciao, this is `%v` \n\n<p>", modName)
 	html += "<h3>List of endpoints:</h3>"
 	for _, a := range allAPIs {
-		html += fmt.Sprintf(`<a href="%s">%s</a><br />`, a, a)
+
+		href := strings.TrimPrefix(a, "/") // it fixes the links if the service is running under a path
+		html += fmt.Sprintf(`<a href="%s">%s</a><br />`, href, a)
 	}
 
 	html += buildInfo
