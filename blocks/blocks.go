@@ -98,3 +98,59 @@ func GetTotalBlocks() (uint64, error) {
 
 	return uint64(rows[0]["total"].(int64)), nil
 }
+
+func FindMissingBlocks(start, end uint64) ([]uint64, error) {
+	var missingBlocks []uint64
+
+	totalBlocks, err := GetTotalBlocksByRange(start, end)
+	if err != nil {
+		return missingBlocks, err
+	}
+	expectedBlocks := end - start + 1
+
+	if totalBlocks != expectedBlocks {
+		if start == end {
+			missingBlocks = append(missingBlocks, start)
+		} else {
+			middle := (start + end) / 2
+			mb1, err := FindMissingBlocks(start, middle)
+			if err != nil {
+				return missingBlocks, err
+			}
+			missingBlocks = append(missingBlocks, mb1...)
+
+			mb2, err := FindMissingBlocks(middle+1, end)
+			if err != nil {
+				return missingBlocks, err
+			}
+			missingBlocks = append(missingBlocks, mb2...)
+		}
+	}
+
+	return missingBlocks, nil
+}
+
+func GetTotalBlocksByRange(start, end uint64) (uint64, error) {
+
+	SQL := fmt.Sprintf(`
+		SELECT 
+			COUNT(*) AS "total"
+		FROM "%s"
+		WHERE 
+			"height" >= $1 AND 
+			"height" <= $2`,
+		database.TABLE_BLOCKS,
+	)
+
+	rows, err := database.DB.Query(SQL, database.QueryParams{start, end})
+	if err != nil {
+		return 0, err
+	}
+	if len(rows) == 0 ||
+		rows[0] == nil ||
+		rows[0]["total"] == nil {
+		return 0, nil
+	}
+
+	return uint64(rows[0]["total"].(int64)), nil
+}
