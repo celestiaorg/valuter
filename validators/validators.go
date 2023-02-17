@@ -156,8 +156,8 @@ func GetUnjailedValidators() ([]ValidatorWithTx, error) {
 		database.FIELD_TX_EVENTS_ACTION,
 		cosmoLogTx.ACTION_UNJAIL,
 
-		database.FIELD_VALIDATORS_OPR_ADDR,
-		database.FIELD_TX_EVENTS_SENDER, // The ValOper address is set to the `sender` field for `unjail`
+		database.FIELD_VALIDATORS_ACCOUNT_ADDR,
+		database.FIELD_TX_EVENTS_SENDER,
 
 		database.FIELD_VALIDATORS_OPR_ADDR,
 
